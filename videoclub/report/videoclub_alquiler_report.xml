@@ -1,0 +1,71 @@
+﻿<odoo>
+	<record id="videoclub.alquier_report" model="ir.actions.report">
+		<field name="name">Informe de alquiler</field>
+		<field name="model">videoclub.alquiler</field>
+		<field name="report_type">qweb-html</field>
+		<field name="report_name">videoclub.alquiler_report_view</field>
+		<field name="report_file">videoclub.alquiler_report</field>
+		<field name="binding_model_id" ref="model_videoclub_alquiler"/>
+		<field name="binding_type">report</field>
+	</record>
+
+	<template id="alquiler_report_view">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="alquiler">
+				<t t-call="web.external_layout">
+					<div class="page">
+						<h2 t-field="alquiler.name"/>
+						<p>
+							Fecha de alquiler: <span t-field="alquiler.fechaalquiler"/>
+						</p>
+						<p>
+							Fecha de devolución: <span t-field="alquiler.fechadevolucion"/>
+						</p>
+						<p>
+							Días restantes: <span t-field="alquiler.diasrestantes"/>
+						</p>
+						<p>
+							Devolución efectuada: <span t-field="alquiler.devolucion"/>
+						</p>
+						<p>
+							Socio: <span t-field="alquiler.socio_id"/>
+						</p>
+						<h3>Películas</h3>
+						<!--<ul>
+							<t t-foreach="alquiler.pelicula_ids" t-as="pelicula">
+								<li>
+									<span t-field="pelicula.name"/>
+								</li>
+							</t>
+						</ul>-->
+						<table class="table table-sm o_main_table">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Categoría</th>
+									<th>Sinopsis</th>
+								</tr>
+							</thead>
+							<tbody>
+								<t t-foreach="alquiler.pelicula_ids" t-as="pelicula">
+									<tr>
+										<td>
+											<span t-field="pelicula.name"/>
+										</td>
+										<td>
+											<span t-field="pelicula.categoria"/>
+										</td>
+										<td>
+											<span t-field="pelicula.sinopsis"/>
+										</td>
+									</tr>
+								</t>
+							</tbody>
+						</table>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+
+</odoo>

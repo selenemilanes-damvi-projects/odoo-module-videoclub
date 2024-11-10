@@ -1,0 +1,218 @@
+<odoo>
+	<data>
+		<!--
+          <record id="object0" model="videoclub.videoclub">
+            <field name="name">Object 0</field>
+            <field name="value">0</field>
+          </record>
+
+          <record id="object1" model="videoclub.videoclub">
+            <field name="name">Object 1</field>
+            <field name="value">10</field>
+          </record>
+
+          <record id="object2" model="videoclub.videoclub">
+            <field name="name">Object 2</field>
+            <field name="value">20</field>
+          </record>
+
+          <record id="object3" model="videoclub.videoclub">
+            <field name="name">Object 3</field>
+            <field name="value">30</field>
+          </record>
+
+          <record id="object4" model="videoclub.videoclub">
+            <field name="name">Object 4</field>
+            <field name="value">40</field>
+          </record>
+-->
+		<record id="SocioSelene" model="videoclub.socio">
+			<field name="name">000001</field>
+			<field name="nombre">Selene</field>
+			<field name="apellido1">Milanés</field>
+			<field name="apellido2">Rodríguez</field>
+			<field name="fechadealta">1995-02-03</field>
+			<field name="fechadebaja">2023-01-15</field>
+			<field name="baja">1</field>
+		</record>
+
+		<record id="SocioAna" model="videoclub.socio">
+			<field name="name">000002</field>
+			<field name="nombre">Ana María</field>
+			<field name="apellido1">Gómez</field>
+			<field name="apellido2">León</field>
+			<field name="fechadealta">1999-01-26</field>
+		</record>
+
+		<record id="SocioEthan" model="videoclub.socio">
+			<field name="name">000003</field>
+			<field name="nombre">Ethan</field>
+			<field name="apellido1">Corchero</field>
+			<field name="apellido2">Martín</field>
+			<field name="fechadealta">2001-08-25</field>
+		</record>
+
+		<record id="SocioÁlvaro" model="videoclub.socio">
+			<field name="name">000004</field>
+			<field name="nombre">Álvaro</field>
+			<field name="apellido1">López</field>
+			<field name="apellido2">Cervera</field>
+			<field name="fechadealta">2010-06-17</field>
+		</record>
+
+		<record id="SocioAlejandro" model="videoclub.socio">
+			<field name="name">000005</field>
+			<field name="nombre">Alejandro</field>
+			<field name="apellido1">Ormeño</field>
+			<field name="apellido2">Hidalgo</field>
+			<field name="fechadealta">2017-11-07</field>
+		</record>
+
+		<record id="PeliculaHP" model="videoclub.pelicula">
+			<field name="name">Harry Potter y el cáliz de fuego</field>
+			<field name="categoria">f</field>
+			<field name="pais">231</field>
+			<field name="sinopsis">Tras las evidencias de que Voldemort ha regresado, Harry se verá envuelto en el tradicional Torneo de los Tres Magos. Con ayuda de Ron y Herminone, se preparará para competir en una nueva lucha que él no ha elegido.</field>
+			<field name="caratula" type="base64" file="videoclub/static/img/HarryPotteryElCaliz.jpg"/>
+			<field name="imagen1" type="base64" file="videoclub/static/img/HarryPotteryElCaliz1.jpg"/>
+			<field name="imagen2" type="base64" file="videoclub/static/img/HarryPotteryElCaliz2.jpg"/>
+		</record>
+
+		<record id="PeliculaPP" model="videoclub.pelicula">
+			<field name="name">Peter Pan</field>
+			<field name="categoria">f</field>
+			<field name="pais">231</field>
+			<field name="sinopsis">Wendy Darling lee a sus hermanos menores cuentos sobre el Capitán Garfio. Peter Pan, que adora los relatos de Wendy, viaja desde muy lejos para oírlos. Esa noche comienza la gran aventura de Wendy y sus hermanos en el País de Nunca Jamás.</field>
+			<field name="caratula" type="base64" file="videoclub/static/img/PeterPan.jpg"/>
+			<field name="imagen1" type="base64" file="videoclub/static/img/PeterPan1.jpg"/>
+			<field name="imagen2" type="base64" file="videoclub/static/img/PeterPan2.jpg"/>
+		</record>
+
+		<record id="PeliculaMatrix" model="videoclub.pelicula">
+			<field name="name">Matrix</field>
+			<field name="categoria">cf</field>
+			<field name="pais">233</field>
+			<field name="sinopsis">El programador informático Thomas Anderson, más conocido en el mundo de los "hacker" como Neo, está en el punto de mira del temible agente Smith. Otros dos piratas informáticos, Trinity y Morfeo, se ponen en contacto con Neo para ayudarlo a escapar. Matrix te posee. Sigue al conejo blanco.</field>
+			<field name="caratula" type="base64" file="videoclub/static/img/Matrix.jpg"/>
+			<field name="imagen1" type="base64" file="videoclub/static/img/Matrix1.jpg"/>
+			<field name="imagen2" type="base64" file="videoclub/static/img/Matrix2.jpg"/>
+		</record>
+
+		<record id="PeliculaEduardo" model="videoclub.pelicula">
+			<field name="name">Eduardo Manostijeras</field>
+			<field name="categoria">d</field>
+			<field name="pais">233</field>
+			<field name="sinopsis">Un inventor que vive solo en un castillo crea a Edward, un hombre artificial. Sin embargo, el inventor muere antes de acabar su proyecto y deja a Edward con cuchillas en lugar de manos. Después de la muerte de su creador, Edward vive en la oscuridad hasta que conoce a Peg, que se lo lleva a su casa.</field>
+			<field name="caratula" type="base64" file="videoclub/static/img/EduardoManostijeras.jpg"/>
+			<field name="imagen1" type="base64" file="videoclub/static/img/EduardoManostijeras1.jpg"/>
+			<field name="imagen2" type="base64" file="videoclub/static/img/EduardoManostijeras2.jpg"/>
+		</record>
+
+		<record id="Actor1" model="videoclub.actor">
+			<field name="name">Jeremy Sumpter</field>
+			<field name="fechanacimiento">1989-02-05</field>
+			<field name="pais">233</field>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaPP')])]"/>
+			<field name="foto" type="base64" file="videoclub/static/img/JeremySumpter.jpg"/>
+		</record>
+
+		<record id="Actor2" model="videoclub.actor">
+			<field name="name">Keanu Reeves</field>
+			<field name="fechanacimiento">1964-09-02</field>
+			<field name="pais">126</field>
+			<field name="pelicula_ids"  eval="[(6, 0, [ref('PeliculaMatrix')])]"/>
+			<field name="foto" type="base64" file="videoclub/static/img/KeanuReeves.jpg"/>
+		</record>
+
+		<record id="Actor3" model="videoclub.actor">
+			<field name="name">Daniel Jacob Radcliffe</field>
+			<field name="fechanacimiento">1989-07-23</field>
+			<field name="pais">231</field>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaHP')])]"/>
+			<field name="foto" type="base64" file="videoclub/static/img/DanielRadcliffe.jpg"/>
+		</record>
+
+		<record id="Actor4" model="videoclub.actor">
+			<field name="name">Emma Watson</field>
+			<field name="fechanacimiento">1990-04-15</field>
+			<field name="pais">75</field>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaHP')])]"/>
+			<field name="foto" type="base64" file="videoclub/static/img/EmmaWatson.jpg"/>
+		</record>
+
+		<record id="Actor5" model="videoclub.actor">
+			<field name="name">Carrie-Anne Moss</field>
+			<field name="fechanacimiento">1967-08-21</field>
+			<field name="pais">38</field>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaMatrix')])]"/>
+			<field name="foto" type="base64" file="videoclub/static/img/CarrieAnneMoss.jpg"/>
+		</record>
+
+		<record id="Actor6" model="videoclub.actor">
+			<field name="name">Winona Ryer</field>
+			<field name="fechanacimiento">1971-10-29</field>
+			<field name="pais">233</field>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaEduardo')])]"/>
+			<field name="foto" type="base64" file="videoclub/static/img/WinonaRyder.jpg"/>
+		</record>
+
+		<record id="Actor7" model="videoclub.actor">
+			<field name="name">Johnny Depp (John Christopher Depp II)</field>
+			<field name="fechanacimiento">1963-06-09</field>
+			<field name="pais">233</field>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaEduardo')])]"/>
+			<field name="foto" type="base64" file="videoclub/static/img/JhonnyDepp.jpg"/>
+		</record>
+
+		<record id="Alquiler1" model="videoclub.alquiler">
+			<field name="name">000001</field>
+			<field name="fechaalquiler">2023-05-13</field>
+			<field name="devolucion">0</field>
+			<field name="socio_id" ref="SocioSelene"/>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaEduardo'), ref('PeliculaMatrix')])]"/>
+			<field name="currency_id">1</field>
+			<field name="importe">8.00</field>
+		</record>
+
+		<record id="Alquiler2" model="videoclub.alquiler">
+			<field name="name">000002</field>
+			<field name="fechaalquiler">2023-05-01</field>
+			<field name="devolucion">1</field>
+			<field name="socio_id" ref="SocioEthan"/>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaHP')])]"/>
+			<field name="currency_id">1</field>
+			<field name="importe">4.00</field>
+		</record>
+
+		<record id="Alquiler3" model="videoclub.alquiler">
+			<field name="name">000003</field>
+			<field name="fechaalquiler">2017-12-03</field>
+			<field name="devolucion">1</field>
+			<field name="socio_id" ref="SocioAna"/>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaPP')])]"/>
+			<field name="currency_id">1</field>
+			<field name="importe">4.00</field>
+		</record>
+
+		<record id="Alquiler4" model="videoclub.alquiler">
+			<field name="name">000004</field>
+			<field name="fechaalquiler">2023-05-09</field>
+			<field name="devolucion">0</field>
+			<field name="socio_id" ref="SocioÁlvaro"/>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaEduardo'), ref('PeliculaPP')])]"/>
+			<field name="currency_id">1</field>
+			<field name="importe">8.00</field>
+		</record>
+
+		<record id="Alquiler5" model="videoclub.alquiler">
+			<field name="name">000005</field>
+			<field name="fechaalquiler">2023-05-12</field>
+			<field name="devolucion">0</field>
+			<field name="socio_id" ref="SocioAlejandro"/>
+			<field name="pelicula_ids" eval="[(6, 0, [ref('PeliculaMatrix')])]"/>
+			<field name="currency_id">1</field>
+			<field name="importe">4.00</field>
+		</record>
+
+	</data>
+</odoo>

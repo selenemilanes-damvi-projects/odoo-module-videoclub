@@ -1,0 +1,542 @@
+<odoo>
+	<data>
+		<!-- explicit list view definition -->
+		<!--
+    <record model="ir.ui.view" id="videoclub.list">
+      <field name="name">videoclub list</field>
+      <field name="model">videoclub.videoclub</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+		<!-- actions opening views on models -->
+		<!--
+    <record model="ir.actions.act_window" id="videoclub.action_window">
+      <field name="name">videoclub window</field>
+      <field name="res_model">videoclub.videoclub</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+		<!-- server action to the one above -->
+		<!--
+    <record model="ir.actions.server" id="videoclub.action_server">
+      <field name="name">videoclub server</field>
+      <field name="model_id" ref="model_videoclub_videoclub"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+		<!-- Top menu item -->
+		<!--
+    <menuitem name="videoclub" id="videoclub.menu_root"/>
+-->
+		<!-- menu categories -->
+		<!--
+    <menuitem name="Menu 1" id="videoclub.menu_1" parent="videoclub.menu_root"/>
+    <menuitem name="Menu 2" id="videoclub.menu_2" parent="videoclub.menu_root"/>
+-->
+		<!-- actions -->
+		<!--
+    <menuitem name="List" id="videoclub.menu_1_list" parent="videoclub.menu_1"
+              action="videoclub.action_window"/>
+    <menuitem name="Server to list" id="videoclub" parent="videoclub.menu_2"
+              action="videoclub.action_server"/>
+-->
+		<!--VISTA DE SOCIOS-->
+		<record model="ir.ui.view" id="videoclub.socio_list_view">
+			<field name="name">videoclub.socio.view.tree</field>
+			<field name="model">videoclub.socio</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="nombre"/>
+					<field name="apellido1"/>
+					<field name="apellido2"/>
+					<field name="fechadealta"/>
+					<field name="antiguedad"/>
+					<field name="fechadebaja" attrs="{'readonly': [('baja', '=', True)], 'invisible': [('baja', '=', False)]}"/>
+					<field name="baja" widget="boolean_toggle"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.socio_form_view">
+			<field name="name">videoclub.socio.view.form</field>
+			<field name="model">videoclub.socio</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de socio">
+					<sheet>
+						<widget name="web_ribbon" title="Baja" bg_color="bg-danger" attrs="{'invisible': [('baja', '=', False)]}"/>
+						<div class="oe_title">
+							<!--<label class="oe_edit_only" for="name" string="Código socio"/>-->
+							<h1>
+								<field name="name" placeholder="Código socio" attrs="{'readonly': [('baja', '=', True)]}"/>
+							</h1>
+						</div>
+
+						<group>
+							<group>
+								<separator string="Datos del socio"/>
+								<field name="nombre" attrs="{'readonly': [('baja', '=', True)]}"/>
+								<field name="apellido1" attrs="{'readonly': [('baja', '=', True)]}"/>
+								<field name="apellido2" attrs="{'readonly': [('baja', '=', True)]}"/>
+								<field name="fechadealta" attrs="{'readonly': [('baja', '=', True)]}"/>
+								<field name="antiguedad"/>
+								<field name="fechadebaja" attrs="{'invisible': [('baja', '=', False)]}"/>
+								<field name="baja" widget="boolean_toggle"/>
+							</group>
+						</group>
+
+						<group>
+							<field name="alquiler_ids" attrs="{'readonly': [('baja', '=', True)]}"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.socio_search_view">
+			<field name="name">videoclub.socio.view.search</field>
+			<field name="model">videoclub.socio</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="nombre"/>
+					<field name="apellido1"/>
+					<field name="apellido2"/>
+					<group>
+						<filter name="group_by_baja" string="Baja" context="{'group_by':'baja'}"/>
+						<filter name="group_by_fechadealta" string="Fecha de alta" context="{'group_by':'fechadealta'}"/>
+						<filter name="group_by_fechadebaja" string="Fecha de baja" context="{'group_by':'fechadebaja'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.socio_pivot_view">
+			<field name="name">videoclub.socio.view.pivot</field>
+			<field name="model">videoclub.socio</field>
+			<field name="arch" type="xml">
+				<pivot>
+					<field name="name"/>
+					<field name="fechadealta" type="col" interval="year"/>
+					<field name="baja" type="row"/>
+				</pivot>
+			</field>
+		</record>
+
+		<!--VISTA DE PELÍCULAS-->
+		<record model="ir.ui.view" id="videoclub.pelicula_list_view">
+			<field name="name">videoclub.pelicula.view.tree</field>
+			<field name="model">videoclub.pelicula</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" decoration-bf="name"/>
+					<field name="categoria" widget="badge" decoration-info="categoria  == 'c'" decoration-success="categoria == 'm'" decoration-danger="categoria in ('t', 's')" decoration-warning="categoria == 'd'" decoration-primary="categoria in ('f', 'cf')"/>
+					<field name="pais"/>
+					<field name="sinopsis"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.pelicula_form_view">
+			<field name="name">videoclub.pelicula.view.form</field>
+			<field name="model">videoclub.pelicula</field>
+			<field name="arch" type="xml">
+				<form string="Ficha de la película">
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name" placeholder="Nombre"/>
+							</h1>
+						</div>
+
+						<!--El "notebook" es para hacer pestañas-->
+						<notebook colspan="4">
+							<page string="Ficha película" name="fichapelicula">
+								<group>
+									<group>
+										<separator string="Información de la película"/>
+										<field name="categoria"/>
+										<field name="sinopsis"/>
+										<field name="pais"/>
+									</group>
+									<group>
+										<field name="caratula" widget="image" class="oe_avatar" options="{'size': [300, 300]}"/>
+									</group>
+								</group>
+
+								<group>
+									<field name="actor_ids"/>
+								</group>
+
+								<group>
+									<field name="alquiler_ids"/>
+								</group>
+							</page>
+							<page string="Imágenes" name="imágenespelicula">
+								<group>
+									<group>
+										<field name="imagen1" widget="image" class="oe_avatar" options="{'size': [300, 300]}"/>
+									</group>
+									<group>
+										<field name="imagen2" widget="image" class="oe_avatar" options="{'size': [300, 300]}"/>
+									</group>
+								</group>
+							</page>
+						</notebook>
+
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.pelicula_search_view">
+			<field name="name">videoclub.pelicula.view.search</field>
+			<field name="model">videoclub.pelicula</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="categoria" widget="selection"/>
+					<field name="pais"/>
+					<field name="sinopsis"/>
+					<field name="actor_ids"/>
+					<group>
+						<filter name="group_by_categoria" string="Categoría" context="{'group_by':'categoria'}"/>
+						<filter name="group_by_pais" string="País" context="{'group_by':'pais'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.pelicula_kanban_view">
+			<field name="name">videoclub.pelicula.view.kanban</field>
+			<field name="model">videoclub.pelicula</field>
+			<field name="arch" type="xml">
+				<kanban class="o_kanban_small_column">
+					<templates>
+						<field name="id"/>
+						<field name="name"/>
+						<field name="caratula"/>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img alt="Carátula" t-att-src="kanban_image('videoclub.pelicula', 'caratula',record.id.raw_value)"/>
+								</div>
+								<div class="oe_kanban_details">
+									<strong class="o_kanban_record_title">
+										<field name="name"/>
+									</strong>
+									<div>
+										<i>
+											<field name="categoria" widget="badge" decoration-info="categoria  == 'c'" decoration-success="categoria == 'm'" decoration-danger="categoria in ('t', 's')" decoration-warning="categoria == 'd'" decoration-primary="categoria in ('f', 'cf')"/>
+										</i>
+									</div>
+									<!--<div>
+										<field name="sinopsis"/>
+									</div>-->
+									<div>
+										<field name="actor_ids"/>
+									</div>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.pelicula_graph_view">
+			<field name="name">videoclub.pelicula.view.graph</field>
+			<field name="model">videoclub.pelicula</field>
+			<field name="arch" type="xml">
+				<graph>
+					<field name="categoria"/>
+				</graph>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.pelicula_pivot_view">
+			<field name="name">videoclub.pelicula.view.pivot</field>
+			<field name="model">videoclub.pelicula</field>
+			<field name="arch" type="xml">
+				<pivot>
+					<field name="name"/>
+					<field name="categoria" type="row"/>
+					<field name="pais" type="row"/>
+				</pivot>
+			</field>
+		</record>
+
+		<!--VISTA DE ALQUILERES-->
+		<record model="ir.ui.view" id="videoclub.alquiler_list_view">
+			<field name="name">videoclub.alquiler.view.tree</field>
+			<field name="model">videoclub.alquiler</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="fechaalquiler"/>
+					<field name="fechadevolucion"/>
+					<field name="diasrestantes"/>
+					<field name="devolucion" widget="boolean_toggle"/>
+					<field name="importe" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+					<field name="currency_id" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.alquiler_form_view">
+			<field name="name">videoclub.alquiler.view.form</field>
+			<field name="model">videoclub.alquiler</field>
+			<field name="arch" type="xml">
+				<form string="Información del alquiler">
+					<sheet>
+						<widget name="web_ribbon" title="Devuelto" bg_color="bg-success" attrs="{'invisible': [('devolucion', '=', False)]}"/>
+						<div class="oe_title">
+							<h1>
+								<field name="name" placeholder="Número de alquiler" attrs="{'readonly': [('devolucion', '=', True)]}"/>
+							</h1>
+						</div>
+						<separator string="Información del alquiler"/>
+						<group>
+							<group>
+								<field name="fechaalquiler" attrs="{'readonly': [('devolucion', '=', True)]}"/>
+								<field name="fechadevolucion"/>
+								<field name="diasrestantes"/>
+								<field name="devolucion" widget="boolean_toggle"/>
+								<field name="socio_id" attrs="{'readonly': [('devolucion', '=', True)]}"/>
+								<field name="importe" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'readonly': [('devolucion', '=', True)]}"/>
+								<field name="currency_id" invisible="1"/>
+							</group>
+						</group>
+
+						<group>
+							<field name="pelicula_ids" attrs="{'readonly': [('devolucion', '=', True)]}">
+								<tree>
+									<field name="name"/>
+									<field name="categoria"/>
+									<field name="pais"/>
+								</tree>
+							</field>
+						</group>
+
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.alquiler_search_view">
+			<field name="name">videoclub.alquiler.view.search</field>
+			<field name="model">videoclub.alquiler</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="fechaalquiler"/>
+					<field name="pelicula_ids"/>
+					<field name="importe"/>
+					<group>
+						<filter name="group_by_devolucion" string="Devolución" context="{'group_by':'devolucion'}"/>
+						<filter name="group_by_fechaalquuiler" string="Fecha de alquiler" context="{'group_by':'fechaalquiler'}"/>
+						<filter name="group_by_pelicula_ids" string="Película" context="{'group_by':'pelicula_ids'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.alquiler_calendar_view">
+			<field name="name">videoclub.alquiler.view.calendar</field>
+			<field name="model">videoclub.alquiler</field>
+			<field name="arch" type="xml">
+				<calendar string="Calendario de devoluciones" date_start="fechadevolucion" color="socio_id" mode="month">
+					<field name="socio_id"/>
+					<field name="pelicula_ids"/>
+					<field name="diasrestantes"/>
+					<field name="devolucion" widget="boolean_toggle"/>
+				</calendar>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.alquiler_graph_view">
+			<field name="name">videoclub.alquiler.view.graph</field>
+			<field name="model">videoclub.alquiler</field>
+			<field name="arch" type="xml">
+				<graph>
+					<field name="fechaalquiler" interval="year"/>
+				</graph>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.alquiler_pivot_view">
+			<field name="name">videoclub.alquiler.view.pivot</field>
+			<field name="model">videoclub.alquiler</field>
+			<field name="arch" type="xml">
+				<pivot>
+					<field name="fechaalquiler" interval="month" type="col"/>
+					<field name="pelicula_ids" type="row"/>
+				</pivot>
+			</field>
+		</record>
+
+		<!--VISTA DE ACTORES-->
+		<record model="ir.ui.view" id="videoclub.actor_list_view">
+			<field name="name">videoclub.actor.view.tree</field>
+			<field name="model">videoclub.actor</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="fechanacimiento"/>
+					<field name="anos"/>
+					<field name="pais"/>
+					<field name="fallecido" widget="boolean_toggle"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.actor_form_view">
+			<field name="name">videoclub.actor.view.form</field>
+			<field name="model">videoclub.actor</field>
+			<field name="arch" type="xml">
+				<form string="Ficha del actor">
+					<sheet>
+						<widget name="web_ribbon" title="Fallecido/a" bg_color="bg-danger" attrs="{'invisible': [('fallecido', '=', False)]}"/>
+						<!--El ribbon es invisible mientras "fallecido" sea false-->
+						<div class="oe_title">
+							<h1>
+								<field name="name" placeholder="Nombre" attrs="{'readonly': [('fallecido', '=', True)]}"/>
+							</h1>
+						</div>
+
+						<separator string="Ficha del actor"/>
+						<group>
+							<group>
+								<field name="fechanacimiento" attrs="{'readonly': [('fallecido', '=', True)]}"/>
+								<!--Los "readonly" no se pueden poner en el "form" directamente porque no funcionan, hay que ponerlo en cada campo individualmente-->
+								<field name="anos"/>
+								<field name="pais" attrs="{'readonly': [('fallecido', '=', True)]}"/>
+								<field name="fallecido" widget="boolean_toggle"/>
+							</group>
+							<group>
+								<field name="foto" widget="image" class="oe_avatar" options="{'size': [300, 300]}" attrs="{'readonly': [('fallecido', '=', True)]}"/>
+							</group>
+						</group>
+
+						<group>
+							<field name="pelicula_ids" attrs="{'readonly': [('fallecido', '=', True)]}">
+								<tree>
+									<field name="name"/>
+									<field name="categoria"/>
+									<field name="pais"/>
+								</tree>
+							</field>
+						</group>
+
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.actor_search_view">
+			<field name="name">videoclub.actor.view.search</field>
+			<field name="model">videoclub.actor</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="pais"/>
+					<field name="pelicula_ids"/>
+					<group>
+						<filter name="group_by_peliculas" string="Películas" context="{'group_by':'pelicula_ids'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="videoclub.actor_kanban_view">
+			<field name="name">videoclub.actor.view.kanban</field>
+			<field name="model">videoclub.actor</field>
+			<field name="arch" type="xml">
+				<kanban class="o_kanban_small_column">
+					<templates>
+						<field name="id"/>
+						<field name="name"/>
+						<field name="foto"/>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img alt="Carátula" t-att-src="kanban_image('videoclub.actor', 'foto',record.id.raw_value)"/>
+								</div>
+								<div class="oe_kanban_details">
+									<strong class="o_kanban_record_title">
+										<field name="name"/>
+									</strong>
+									<div>
+										<i>
+											<field name="anos"/> años
+										</i>
+									</div>
+									<div>
+										<field name="pais"/>
+									</div>
+									<div>
+										<field name="pelicula_ids"/>
+									</div>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<!--DEFINICIÓN DE MENÚS-->
+		<!-- actions opening views on models -->
+
+		<record model="ir.actions.act_window" id="videoclub.socio_action_window">
+			<field name="name">Socios</field>
+			<field name="res_model">videoclub.socio</field>
+			<field name="view_mode">tree,form,pivot</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="videoclub.pelicula_action_window">
+			<field name="name">Películas</field>
+			<field name="res_model">videoclub.pelicula</field>
+			<field name="view_mode">kanban,tree,form,graph,pivot</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="videoclub.alquiler_action_window">
+			<field name="name">Alquileres</field>
+			<field name="res_model">videoclub.alquiler</field>
+			<field name="view_mode">tree,form,calendar,graph,pivot</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="videoclub.actor_action_window">
+			<field name="name">Actores</field>
+			<field name="res_model">videoclub.actor</field>
+			<field name="view_mode">kanban,tree,form</field>
+		</record>
+
+
+		<!-- Top menu item -->
+		<menuitem name="Videoclub" id="videoclub.menu_root" web_icon="videoclub,static/description/icon.png"/>
+
+		<!-- menu categories -->
+		<menuitem name="Socios" id="videoclub.socio_menu" parent="videoclub.menu_root" action="videoclub.socio_action_window"/>
+		<menuitem name="Películas" id="videoclub.pelicula_menu" parent="videoclub.menu_root" action="videoclub.pelicula_action_window"/>
+		<menuitem name="Alquileres" id="videoclub.alquiler_menu" parent="videoclub.menu_root" action="videoclub.alquiler_action_window"/>
+		<menuitem name="Actores" id="videoclub.actor_menu" parent="videoclub.menu_root" action="videoclub.actor_action_window"/>
+
+	</data>
+</odoo>

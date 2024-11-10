@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--Definimos una categoría de seguridad para el módulo-->
+		<record model="ir.module.category" id="videoclub.module_category_videoclub">
+			<field name="name">Videoclub</field>
+			<field name="description">Permite gestionar los alquileres de tu videoclub.</field>
+			<field name="sequence">100</field>
+		</record>
+
+		<!--Definimos los grupos de usuarios-->
+		<record model="res.groups" id="group_videoclub_usuario">
+			<field name="name">Usuario</field>
+			<field name="category_id" ref="videoclub.module_category_videoclub"/>
+			<field name="comment">Usuarios que gestionan alquileres, películas y actores.</field>
+			<!--Si quisiéramos añadir a todos los usuarios dentro de un grupo-->
+			<!--<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>-->
+		</record>
+
+		<record model="res.groups" id="group_videoclub_director">
+			<field name="name">Director</field>
+			<field name="category_id" ref="videoclub.module_category_videoclub"/>
+			<field name="comment">Usuarios que gestionan los socios.</field>
+			<!--Los miembros del grupo director también son miembros del grupo de usuario-->
+			<field name="implied_ids" eval="[(4, ref('group_videoclub_usuario'))]"/>
+			<!--Añadimos a los usuarios administradores de Odoo-->
+			<field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+		</record>
+	</data>
+</odoo>

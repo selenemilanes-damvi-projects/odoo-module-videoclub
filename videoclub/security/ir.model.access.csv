@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_videoclub_alquiler_usuario,videoclub.alquiler.usuario,model_videoclub_alquiler,videoclub.group_videoclub_usuario,1,1,1,1
+access_videoclub_pelicula_usuario,videoclub.pelicula.usuario,model_videoclub_pelicula,videoclub.group_videoclub_usuario,1,1,1,1
+access_videoclub_actor_usuario,videoclub.actor.usuario,model_videoclub_actor,videoclub.group_videoclub_usuario,1,1,1,1
+access_videoclub_socio_usuario,videoclub.socio.usuario,model_videoclub_socio,videoclub.group_videoclub_usuario,1,0,0,0
+access_videoclub_socio_director,videoclub.socio.director,model_videoclub_socio,videoclub.group_videoclub_director,1,1,1,1
