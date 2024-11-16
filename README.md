@@ -1,7 +1,5 @@
 # 📽️ Videoclub ( <img alt="Odoo" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Odoo_Official_Logo.png" width="130" height="40"> module) 
-
-## Descripción
-Módulo de Odoo que sirve para gestionar los socios, películas, actores (de las películas) y alquileres de un videoclub.
+Módulo de Odoo (EPR-CRM) que sirve para gestionar los socios, películas, actores (de las películas) y alquileres de un videoclub.
 
 ## Tecnologías
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
