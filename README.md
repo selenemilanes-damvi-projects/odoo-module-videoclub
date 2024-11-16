@@ -11,7 +11,7 @@ Módulo de Odoo (EPR-CRM) que sirve para gestionar los socios, películas, actor
 [![Vídeo demostrativo](https://img.youtube.com/vi/quHhUK-yv9M/hqdefault.jpg)](https://youtu.be/quHhUK-yv9M)
 
 ## ©️ Créditos
-- Desarrollo: Selene Milanés
+- Desarrollo: Selene Milanés.
   
 <br>
 No dudes en contactarme para cualquier duda o inquietud <br>
